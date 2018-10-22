@@ -1,0 +1,42 @@
+{% extends 'layout.twig' %}
+
+{% block title post.name %}
+{% block body  %}
+
+    <h1>{{ post.name }} </h1>
+    {% if post.creatorName %}
+        Crée par :
+        {% for creatorName in post.creatorName %}
+            {{ creatorName }}{% if not loop.last  %} & {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% if post.category_id %}
+        <blockquote class="blockquote text-right">
+            <a href="{{ path('blog.category', {slug: post.category_slug}) }}" title="{{ post.category_name }}"><footer><cite title="Source Title"><small>Catégorie des {{ post.category_name }}</small></cite></footer></a>
+        </blockquote>
+    {% endif %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto" style="width: 45%">
+                <figure class="figure">
+                    <img class="img-fluid" src="{{ post.thumb }}" alt="">
+                </figure>
+            </div>
+        </div>
+    </div>
+    {% if post.user_pseudo %}
+        <blockquote class="blockquote text-left">
+            <cite title="Source Title"><small>Partagé par {{ post.user_pseudo }}</small></cite>
+        </blockquote>
+    {% endif %}
+
+    <p class="text-muted">{{ post.created_at | ago }}</p>
+
+    <p>
+        {{ post.content | nl2br }}
+    </p>
+
+
+{% endblock %}
+
+

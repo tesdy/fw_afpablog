@@ -1,0 +1,34 @@
+{% extends '@admin/layout.twig' %}
+
+{% block title 'Edition des catégories' %}
+{% block body  %}
+
+    <p class="text-right">
+        <a href="{{ path(routePrefix~'.create') }}" class="btn btn-primary">Ajouter une Catégorie</a>
+    </p>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr style="text-align: center">
+                <td>Titre</td>
+                <td style="text-align: center">Action</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr style="text-align: center">
+                    <td>{{ item.name }}</td>
+                    <td>
+                        <a href="{{ path(routePrefix~'.edit', {id: item.id}) }}" class="btn btn-primary">Editer</a>
+                        <form style="display: inline" action="{{ path(routePrefix~'.delete', {id: item.id}) }}" method="POST" onsubmit="return confirm('Confirmer suppression de \'{{ item.name }}\'.')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {{ paginate(items, routePrefix~'.index') }}
+{% endblock %}

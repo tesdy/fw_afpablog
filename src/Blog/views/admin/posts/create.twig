@@ -1,0 +1,15 @@
+{% extends '@admin/layout.twig' %}
+
+{% block title 'Création d\'un nouvel article' %}
+{% block body  %}
+    <h1>Ajouter un article</h1>
+
+    <form action="{{ path(routePrefix~'.create', {id: item.id }) }}" method="post" enctype="multipart/form-data">
+
+        {% include viewPath~'/form.twig' %}
+
+        <button class="btn btn-primary" type="submit">Ajouter</button>
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<ruleset name="myframework">
+    <description>Mes règles de format</description>
+    <arg name="colors"/>
+    <arg value="p"/>
+
+    <file>src</file>
+    <file>tests</file>
+    <file>public</file>
+
+    <rule ref="PSR2">
+        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace" />
+    </rule>
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+
+</ruleset>
